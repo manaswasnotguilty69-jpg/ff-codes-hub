@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FF Codes Hub — Admin</title><link rel="stylesheet" href="style.css">
+<style>.admin{max-width:700px;margin:70px auto;padding:30px}.admin input,.admin textarea{width:100%;padding:13px;margin:8px 0 15px;background:#11141b;border:1px solid #343a46;color:#fff;border-radius:9px}.admin button{padding:13px 18px;border:0;border-radius:9px;background:#ff8a00;font-weight:900}.note{color:#9ca5b4;line-height:1.6}</style>
+</head>
+<body><main class="admin"><div class="brand"><span>FF</span> Codes Hub</div><h1>Admin Panel Starter</h1>
+<p class="note">This is a frontend starter only. Do not put real admin passwords or secret API keys in browser JavaScript. For production, connect this page to a server/database with authentication.</p>
+<label>Code</label><input id="code" placeholder="Enter verified code">
+<label>Expiry / note</label><input id="expiry" placeholder="e.g. Valid until 15 Aug">
+<button onclick="addCode()">Add Code</button>
+<p id="status" class="note"></p>
+<script>
+function addCode(){
+ const c=document.getElementById('code').value.trim(), e=document.getElementById('expiry').value.trim();
+ if(!c){document.getElementById('status').textContent='Enter a code.';return}
+ document.getElementById('status').textContent='Frontend demo: save this entry in your backend/database in production.';
+}
+</script></main></body></html>
