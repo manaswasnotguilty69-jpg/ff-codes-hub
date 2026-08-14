@@ -4,7 +4,7 @@ const codes = [
   { code: "9ET48BS5VUR9ZSNN", expires: "₹300 Reward" },
   { code: "DTWU191YLR89ZDBB", expires: "₹400 Reward" },
   { code: "H3GUDCKTYBRYBEFF", expires: "₹500 Reward" },
-  { code: "A5K2MGULGFE42WOA", expires: "₹600 Reward" },
+  { code: "A5K2MGULGFE42WQA", expires: "₹600 Reward" },
   { code: "4C4SLLTK4LBJKNEU", expires: "₹700 Reward" },
   { code: "FA5S6M4YX8R3U8P3", expires: "₹800 Reward" },
   { code: "08BH2ELABBBU8RD8", expires: "₹900 Reward" },
@@ -33,23 +33,40 @@ function renderCodes() {
 
     const button = card.querySelector(".copy");
 
-    button.addEventListener("click", async function() {
-      try {
-        await navigator.clipboard.writeText(item.code);
-        button.textContent = "COPIED ✓";
+    button.addEventListener("click", function() {
+      navigator.clipboard.writeText(item.code)
+        .then(function() {
+          button.textContent = "COPIED ✓";
 
-        setTimeout(function() {
-          button.textContent = "COPY CODE";
-        }, 1500);
-      } catch (error) {
-        button.textContent = "COPY FAILED";
-      }
+          setTimeout(function() {
+            button.textContent = "COPY CODE";
+          }, 1500);
+        })
+        .catch(function() {
+          const textArea = document.createElement("textarea");
+          textArea.value = item.code;
+          textArea.style.position = "fixed";
+          textArea.style.left = "-9999px";
+
+          document.body.appendChild(textArea);
+          textArea.select();
+          document.execCommand("copy");
+          textArea.remove();
+
+          button.textContent = "COPIED ✓";
+
+          setTimeout(function() {
+            button.textContent = "COPY CODE";
+          }, 1500);
+        });
     });
 
     grid.appendChild(card);
   });
 
-  if (empty) empty.classList.add("hidden");
+  if (empty) {
+    empty.classList.add("hidden");
+  }
 
   if (updated) {
     updated.textContent =
