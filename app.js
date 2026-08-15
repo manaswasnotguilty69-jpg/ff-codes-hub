@@ -1,5 +1,5 @@
 const codes = [
-  { code: "CMT0GYCE3WYB69CR", expires: "₹160 Reward" },
+  { code: "CMT0GYCE3WYB69CR", expires: "₹80 Reward" },
   { code: "0LS9R3TFJ0APDG8X", expires: "₹200 Reward" },
   { code: "9ET48BS5VUR9ZSNN", expires: "₹300 Reward" },
   { code: "DTWU191YLR89ZDBB", expires: "₹400 Reward" },
