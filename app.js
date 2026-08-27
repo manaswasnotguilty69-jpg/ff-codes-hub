@@ -17,13 +17,11 @@ const updated = document.getElementById("updated");
 
 function renderCodes() {
   if (!grid) return;
-
   grid.innerHTML = "";
 
   codes.forEach(function(item) {
     const card = document.createElement("article");
     card.className = "code-card";
-
     card.innerHTML = `
       <div class="eyebrow">ACTIVE CODE</div>
       <div class="code">${item.code}</div>
@@ -32,46 +30,31 @@ function renderCodes() {
     `;
 
     const button = card.querySelector(".copy");
-
     button.addEventListener("click", function() {
       navigator.clipboard.writeText(item.code)
         .then(function() {
           button.textContent = "COPIED ✓";
-
-          setTimeout(function() {
-            button.textContent = "COPY CODE";
-          }, 1500);
+          setTimeout(function(){ button.textContent = "COPY CODE"; }, 1500);
         })
         .catch(function() {
           const textArea = document.createElement("textarea");
           textArea.value = item.code;
           textArea.style.position = "fixed";
           textArea.style.left = "-9999px";
-
           document.body.appendChild(textArea);
           textArea.select();
           document.execCommand("copy");
           textArea.remove();
-
           button.textContent = "COPIED ✓";
-
-          setTimeout(function() {
-            button.textContent = "COPY CODE";
-          }, 1500);
+          setTimeout(function(){ button.textContent = "COPY CODE"; }, 1500);
         });
     });
 
     grid.appendChild(card);
   });
 
-  if (empty) {
-    empty.classList.add("hidden");
-  }
-
-  if (updated) {
-    updated.textContent =
-      "Updated: " + new Date().toLocaleDateString("en-IN");
-  }
+  if (empty) empty.classList.add("hidden");
+  if (updated) updated.textContent = "Updated: " + new Date().toLocaleDateString("en-IN");
 }
 
 renderCodes();
